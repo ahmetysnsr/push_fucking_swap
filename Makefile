@@ -7,24 +7,41 @@ CFLAGS  := -Wall -Wextra -Werror -I.
 DFLAGS  := -MMD -MP
 
 # Target
-NAME    := push_swap
-CHECKER := checker
+NAME	:= push_swap
+CHECKER	:= checker
 
-# Sources (all .c in repo root)
-SRCS := \
-    input_functions.c \
-    linked_list_add_functions.c \
-    linked_list_init_functions.c \
-    linked_list_printer.c \
-    linked_list_remove_functions.c \
+# Directories
+OBJDIR 		:= obj
+WRAPPER_DIR	:= push_swap_wrappers
+
+# Sources
+# Root sources
+ROOT_SRCS := \
+	input_functions.c \
+	linked_list_add_functions.c \
+	linked_list_init_functions.c \
+	linked_list_printer.c \
+	linked_list_remove_functions.c \
 	linked_list_utils.c \
-    linked_list_sort_functions.c \
-    push_swap_functions.c \
-    push_swap_wrapper_functions.c \
-    main.c
+	linked_list_sort_functions.c \
+	push_swap_functions.c \
+	ft_split.c \
+	ft_strlen.c \
+	main.c
 
-# Checker sources (no wrapper prints needed, but reuse shared modules)
-CHECKER_SRCS := \
+# Wrapper sources (Manually listed)
+# BURADAKİ DOSYA İSİMLERİNİ GERÇEK İSİMLERLE DEĞİŞTİRİN
+WRAPPER_SRCS := \
+	$(WRAPPER_DIR)/push_functions.c \
+	$(WRAPPER_DIR)/reverse_rotate_functions.c \
+	$(WRAPPER_DIR)/swap_functions.c \
+	$(WRAPPER_DIR)/rotate_functions.c \
+
+# All sources combined
+SRCS := $(ROOT_SRCS) $(WRAPPER_SRCS)
+
+# Checker sources
+CHECKER_ROOT_SRCS := \
 	input_functions.c \
 	linked_list_add_functions.c \
 	linked_list_init_functions.c \
@@ -32,71 +49,41 @@ CHECKER_SRCS := \
 	linked_list_utils.c \
 	linked_list_sort_functions.c \
 	push_swap_functions.c \
+	ft_split.c \
+	ft_strlen.c \
 	checker.c
 
-CHECKER_OBJS := $(CHECKER_SRCS:%.c=$(OBJDIR)/%.o)
+CHECKER_SRCS := $(CHECKER_ROOT_SRCS) $(WRAPPER_SRCS)
 
-# Build directories
-OBJDIR  := obj
-OBJS    := $(SRCS:%.c=$(OBJDIR)/%.o)
-DEPS    := $(OBJS:.o=.d)
+# Objects
+OBJS			:= $(SRCS:%.c=$(OBJDIR)/%.o)
+CHECKER_OBJS	:= $(CHECKER_SRCS:%.c=$(OBJDIR)/%.o)
+DEPS			:= $(OBJS:.o=.d) $(CHECKER_OBJS:.o=.d)
 
 # Default rule
 all: $(NAME)
 
-checker: $(OBJDIR) $(CHECKER_OBJS)
+checker: $(CHECKER_OBJS)
 	$(CC) $(CFLAGS) $(CHECKER_OBJS) -o $(CHECKER)
-	@echo "Built $(CHECKER)"
 
-$(NAME): $(OBJDIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
-	@echo "Built $(NAME)"
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
-
-# Object build rule with deps
-$(OBJDIR)/%.o: %.c push_swap.h | $(OBJDIR)
+# Object build rule with deps and auto-mkdir for subdirectories
+$(OBJDIR)/%.o: %.c push_swap.h
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
+
+# Include dependencies
+-include $(DEPS)
 
 # Convenience targets
 clean:
-	@rm -rf $(OBJDIR)
-	@echo "Cleaned objects"
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo "Removed $(NAME)"
+	rm -f $(NAME) $(CHECKER)
 
 re: fclean all
-
-# Build with debug info
-.PHONY: debug
-debug: CFLAGS += -g3 -O0
-debug: re
-
-# Build with AddressSanitizer (Linux/Clang or GCC)
-.PHONY: sanitize
-sanitize: CFLAGS += -g3 -O0 -fsanitize=address -fno-omit-frame-pointer
-sanitize: re
-
-# Run helper: make run ARGS="3 2 1"
-.PHONY: run
-run: $(NAME)
-	./$(NAME) $(ARGS)
-
-# Basic help
-.PHONY: help
-help:
-	@echo "Targets:"
-	@echo "  all        - build $(NAME)"
-	@echo "  clean      - remove objects"
-	@echo "  fclean     - remove objects and binary"
-	@echo "  re         - rebuild from scratch"
-	@echo "  debug      - rebuild with -g3 -O0"
-	@echo "  sanitize   - rebuild with AddressSanitizer"
-	@echo "  run ARGS=  - run with arguments"
-
--include $(DEPS)
 
 .PHONY: all clean fclean re checker

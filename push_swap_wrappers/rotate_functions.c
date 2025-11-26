@@ -6,12 +6,12 @@
 /*   By: asari <asari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 16:07:59 by asari             #+#    #+#             */
-/*   Updated: 2025/11/26 16:08:00 by asari            ###   ########.fr       */
+/*   Updated: 2025/11/26 16:19:06 by asari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	rb(list *b)
 {
