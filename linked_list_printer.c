@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include "push_swap.h"
+#include "ft_printf/ft_printf.h"
 
 void	print_list_from_head(t_list *lst)
 {
@@ -20,19 +21,19 @@ void	print_list_from_head(t_list *lst)
 
 	if (list_checker(lst) == 0)
 	{
-		printf("The list is empty\n");
+		ft_printf("The list is empty\n");
 		return ;
 	}
-	printf("List Size: %d\n", lst->size);
+	ft_printf("List Size: %d\n", lst->size);
 	curr = lst->head;
 	counter = 0;
 	while (counter < lst->size)
 	{
-		printf("%d - %d\n", counter, curr->value);
+		ft_printf("%d - %d\n", counter, curr->value);
 		counter++;
 		curr = curr->next;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	print_list_from_tail(t_list *lst)
@@ -42,14 +43,14 @@ void	print_list_from_tail(t_list *lst)
 
 	if (list_checker(lst) == 0)
 		return ;
-	printf("List Size: %d\n", lst->size);
+	ft_printf("List Size: %d\n", lst->size);
 	curr = lst->tail;
 	counter = 0;
 	while (counter < lst->size)
 	{
-		printf("%d - %d\n", counter, curr->value);
+		ft_printf("%d - %d\n", counter, curr->value);
 		counter++;
 		curr = curr->prev;
 	}
-	printf("\n");
+	ft_printf("\n");
 }

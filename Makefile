@@ -2,7 +2,7 @@
 
 # Compiler and flags
 CC      := cc
-CFLAGS  := -Wall -Wextra -Werror -I.
+CFLAGS  := -Wall -Wextra -Werror
 # Enable dependency generation
 DFLAGS  := -MMD -MP
 
@@ -13,6 +13,10 @@ CHECKER	:= checker
 # Directories
 OBJDIR 		:= obj
 WRAPPER_DIR	:= push_swap_wrappers
+PRINTF_DIR	:= ft_printf
+
+PRINTF_LIB	:= $(PRINTF_DIR)/libftprintf.a
+LIBS		:= -L$(PRINTF_DIR) -lftprintf
 
 # Sources
 # Root sources
@@ -61,11 +65,15 @@ DEPS			:= $(OBJS:.o=.d) $(CHECKER_OBJS:.o=.d)
 # Default rule
 all: $(NAME)
 
+$(PRINTF_LIB):
+	@make -C $(PRINTF_DIR)
+
+
 checker: $(CHECKER_OBJS)
 	$(CC) $(CFLAGS) $(CHECKER_OBJS) -o $(CHECKER)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS) $(PRINTF_LIB)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
 # Object build rule with deps and auto-mkdir for subdirectories
 $(OBJDIR)/%.o: %.c push_swap.h
