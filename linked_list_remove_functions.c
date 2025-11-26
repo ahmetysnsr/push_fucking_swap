@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-list	*remove_front(list *lst)
+t_list	*remove_front(t_list *lst)
 {
-	node	*old_head;
+	t_node	*old_head;
 
 	if (list_checker(lst) == 0)
 		return (NULL);
@@ -34,9 +34,9 @@ list	*remove_front(list *lst)
 	return (lst);
 }
 
-list	*remove_back(list *lst)
+t_list	*remove_back(t_list *lst)
 {
-	node	*old_tail;
+	t_node	*old_tail;
 
 	if (list_checker(lst) == 0)
 		return (NULL);
@@ -56,10 +56,10 @@ list	*remove_back(list *lst)
 	return (lst);
 }
 
-void	delete_list(list *lst)
+void	delete_list(t_list *lst)
 {
-	node	*n;
-	node	*tmp;
+	t_node	*n;
+	t_node	*tmp;
 
 	if (lst == NULL)
 		return ;

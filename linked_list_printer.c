@@ -13,9 +13,9 @@
 #include <stdio.h>
 #include "push_swap.h"
 
-void	print_list_from_head(list *lst)
+void	print_list_from_head(t_list *lst)
 {
-	node	*curr;
+	t_node	*curr;
 	int		counter;
 
 	if (list_checker(lst) == 0)
@@ -35,9 +35,9 @@ void	print_list_from_head(list *lst)
 	printf("\n");
 }
 
-void	print_list_from_tail(list *lst)
+void	print_list_from_tail(t_list *lst)
 {
-	node	*curr;
+	t_node	*curr;
 	int		counter;
 
 	if (list_checker(lst) == 0)

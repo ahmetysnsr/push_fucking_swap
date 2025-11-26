@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-static node	*create_node(int value)
+static t_node	*create_node(int value)
 {
-	node	*new_node;
+	t_node	*new_node;
 
-	new_node = (node *)malloc(sizeof(node));
+	new_node = (t_node *)malloc(sizeof(t_node));
 	if (new_node == NULL)
 		return (NULL);
 	new_node->value = value;
@@ -25,15 +25,15 @@ static node	*create_node(int value)
 	return (new_node);
 }
 
-list	*create_list_with_value(int value)
+t_list	*create_list_with_value(int value)
 {
-	list	*new_list;
-	node	*new_node;
+	t_list	*new_list;
+	t_node	*new_node;
 
 	new_node = create_node(value);
 	if (new_node == NULL)
 		return (NULL);
-	new_list = (list *)malloc(sizeof(list));
+	new_list = (t_list *)malloc(sizeof(t_list));
 	if (new_list == NULL)
 		return (NULL);
 	new_list->head = new_node;
@@ -42,11 +42,11 @@ list	*create_list_with_value(int value)
 	return (new_list);
 }
 
-list	*create_list(void)
+t_list	*create_list(void)
 {
-	list	*new_list;
+	t_list	*new_list;
 
-	new_list = (list *)malloc(sizeof(list));
+	new_list = (t_list *)malloc(sizeof(t_list));
 	if (new_list == NULL)
 		return (NULL);
 	new_list->head = NULL;

@@ -36,11 +36,11 @@ static void	bubble_sort(int *arr, int size)
 	}
 }
 
-void	do_indexing(list *stack_a)
+void	do_indexing(t_list *stack_a)
 {
 	int		*tmp_arr;
 	int		i;
-	node	*curr;
+	t_node	*curr;
 
 	if (stack_a == NULL || stack_a->size == 0)
 		return ;
@@ -74,9 +74,9 @@ void	do_indexing(list *stack_a)
 	free(tmp_arr);
 }
 
-int	is_sorted(list *a)
+int	is_sorted(t_list *a)
 {
-	node	*curr;
+	t_node	*curr;
 
 	if (a == NULL || a->size < 2)
 		return (1);
@@ -90,7 +90,7 @@ int	is_sorted(list *a)
 	return (1);
 }
 
-static int	get_max_bits(list *a)
+static int	get_max_bits(t_list *a)
 {
 	int	max_num;
 	int	max_bits;
@@ -102,7 +102,7 @@ static int	get_max_bits(list *a)
 	return (max_bits);
 }
 
-void	radix_sort(list *a, list *b)
+void	radix_sort(t_list *a, t_list *b)
 {
 	int	i;
 	int	j;

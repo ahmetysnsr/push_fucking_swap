@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-node	*create_first_value(list *lst, int value)
+t_node	*create_first_value(t_list *lst, int value)
 {
-	node	*new_node;
+	t_node	*new_node;
 
-	new_node = (node *)malloc(sizeof(node));
+	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		return (NULL);
 	new_node->value = value;
@@ -28,14 +28,14 @@ node	*create_first_value(list *lst, int value)
 	return (new_node);
 }
 
-node	*add_front(list *lst, int value)
+t_node	*add_front(t_list *lst, int value)
 {
-	node	*old_head;
-	node	*new_head;
+	t_node	*old_head;
+	t_node	*new_head;
 
 	if (lst->size == 0)
 		return (create_first_value(lst, value));
-	new_head = (node *)malloc(sizeof(node));
+	new_head = (t_node *)malloc(sizeof(t_node));
 	if (new_head == NULL)
 		return (NULL);
 	new_head->value = value;
@@ -48,14 +48,14 @@ node	*add_front(list *lst, int value)
 	return (new_head);
 }
 
-node	*add_back(list *lst, int value)
+t_node	*add_back(t_list *lst, int value)
 {
-	node	*old_tail;
-	node	*new_tail;
+	t_node	*old_tail;
+	t_node	*new_tail;
 
 	if (lst->size == 0)
 		return (create_first_value(lst, value));
-	new_tail = (node *)malloc(sizeof(node));
+	new_tail = (t_node *)malloc(sizeof(t_node));
 	if (new_tail == NULL)
 		return (NULL);
 	new_tail->value = value;

@@ -58,9 +58,9 @@ static int	safe_atoi(const char *str, int *out)
 	return (1);
 }
 
-static int	has_duplicate(list *a, int v)
+static int	has_duplicate(t_list *a, int v)
 {
-	node	*c;
+	t_node	*c;
 
 	c = a->head;
 	while (c)
@@ -72,7 +72,7 @@ static int	has_duplicate(list *a, int v)
 	return (0);
 }
 
-list	*str_to_list(char **args, int argc, list *a)
+t_list	*str_to_list(char **args, int argc, t_list *a)
 {
 	int	i;
 	int	v;

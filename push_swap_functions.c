@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	push(list *src, list *dst)
+void	push(t_list *src, t_list *dst)
 {
 	int	value;
 
@@ -23,7 +23,7 @@ void	push(list *src, list *dst)
 	add_front(dst, value);
 }
 
-void	swap(list *lst)
+void	swap(t_list *lst)
 {
 	int	tmp;
 
@@ -34,10 +34,10 @@ void	swap(list *lst)
 	lst->head->next->value = tmp;
 }
 
-void	rotate(list *lst)
+void	rotate(t_list *lst)
 {
-	node	*old_head;
-	node	*old_tail;
+	t_node	*old_head;
+	t_node	*old_tail;
 
 	if (list_checker(lst) == 0 || lst->size < 2)
 		return ;
@@ -51,11 +51,11 @@ void	rotate(list *lst)
 	lst->tail = old_head;
 }
 
-void	reverse_rotate(list *lst)
+void	reverse_rotate(t_list *lst)
 {
-	node	*old_head;
-	node	*old_tail;
-	node	*new_tail;
+	t_node	*old_head;
+	t_node	*old_tail;
+	t_node	*new_tail;
 
 	if (list_checker(lst) == 0 || lst->size < 2)
 		return ;

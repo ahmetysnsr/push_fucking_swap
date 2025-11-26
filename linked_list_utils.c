@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	list_checker(list *lst)
+int	list_checker(t_list *lst)
 {
 	if (lst == NULL)
 		return (0);
