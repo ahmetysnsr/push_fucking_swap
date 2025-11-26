@@ -26,7 +26,6 @@ ROOT_SRCS := \
 	linked_list_sort_functions.c \
 	push_swap_functions.c \
 	ft_split.c \
-	ft_strlen.c \
 	main.c
 
 # Wrapper sources (Manually listed)
@@ -50,7 +49,6 @@ CHECKER_ROOT_SRCS := \
 	linked_list_sort_functions.c \
 	push_swap_functions.c \
 	ft_split.c \
-	ft_strlen.c \
 	checker.c
 
 CHECKER_SRCS := $(CHECKER_ROOT_SRCS) $(WRAPPER_SRCS)

@@ -36,6 +36,29 @@ static void	bubble_sort(int *arr, int size)
 	}
 }
 
+static void	assign_indices(t_list *stack_a, int *tmp_arr)
+{
+	t_node	*curr;
+	int		i;
+
+	curr = stack_a->head;
+	while (curr != NULL)
+	{
+		i = 0;
+		while (i < stack_a->size)
+		{
+			if (curr->value == tmp_arr[i])
+			{
+				curr->value = i;
+				i = stack_a->size;
+			}
+			else
+				i++;
+		}
+		curr = curr->next;
+	}
+}
+
 void	do_indexing(t_list *stack_a)
 {
 	int		*tmp_arr;
@@ -56,38 +79,8 @@ void	do_indexing(t_list *stack_a)
 		i++;
 	}
 	bubble_sort(tmp_arr, stack_a->size);
-	curr = stack_a->head;
-	while (curr != NULL)
-	{
-		i = 0;
-		while (i < stack_a->size)
-		{
-			if (curr->value == tmp_arr[i])
-			{
-				curr->value = i;
-				break ;
-			}
-			i++;
-		}
-		curr = curr->next;
-	}
+	assign_indices(stack_a, tmp_arr);
 	free(tmp_arr);
-}
-
-int	is_sorted(t_list *a)
-{
-	t_node	*curr;
-
-	if (a == NULL || a->size < 2)
-		return (1);
-	curr = a->head;
-	while (curr->next != NULL)
-	{
-		if (curr->value > curr->next->value)
-			return (0);
-		curr = curr->next;
-	}
-	return (1);
 }
 
 static int	get_max_bits(t_list *a)

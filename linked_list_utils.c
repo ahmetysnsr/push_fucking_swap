@@ -18,3 +18,19 @@ int	list_checker(t_list *lst)
 		return (0);
 	return (1);
 }
+
+int	is_sorted(t_list *a)
+{
+	t_node	*curr;
+
+	if (a == NULL || a->size < 2)
+		return (1);
+	curr = a->head;
+	while (curr->next != NULL)
+	{
+		if (curr->value > curr->next->value)
+			return (0);
+		curr = curr->next;
+	}
+	return (1);
+}
