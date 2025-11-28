@@ -59,17 +59,17 @@ static void	assign_indices(t_list *stack_a, int *tmp_arr)
 	}
 }
 
-void	do_indexing(t_list *stack_a)
+int	do_indexing(t_list *stack_a)
 {
 	int		*tmp_arr;
 	int		i;
 	t_node	*curr;
 
 	if (stack_a == NULL || stack_a->size == 0)
-		return ;
+		return (0);
 	tmp_arr = (int *)malloc(sizeof(int) * stack_a->size);
 	if (tmp_arr == NULL)
-		return ;
+		return (0);
 	i = 0;
 	curr = stack_a->head;
 	while (curr != NULL)
@@ -81,6 +81,7 @@ void	do_indexing(t_list *stack_a)
 	bubble_sort(tmp_arr, stack_a->size);
 	assign_indices(stack_a, tmp_arr);
 	free(tmp_arr);
+	return (1);
 }
 
 static int	get_max_bits(t_list *a)

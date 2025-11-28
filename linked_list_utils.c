@@ -34,3 +34,29 @@ int	is_sorted(t_list *a)
 	}
 	return (1);
 }
+
+int	single_arg_to_list(t_list *a, char *str)
+{
+	char	**arr_num;
+	int		i;
+
+	arr_num = ft_split(str, ' ');
+	if (arr_num == NULL)
+		return (0);
+	i = 0;
+	while (arr_num[i] != NULL)
+		i++;
+	if (str_to_list(arr_num, i, a) == NULL)
+	{
+		free_split(arr_num);
+		return(0);
+	}
+	free_split(arr_num);
+	return (1);
+}
+
+int	error()
+{
+	write(2, "Error\n", 6);
+	return (1);
+}

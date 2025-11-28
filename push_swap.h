@@ -43,7 +43,7 @@ void	push(t_list *src, t_list *dst);
 void	swap(t_list *lst);
 void	rotate(t_list *lst);
 void	reverse_rotate(t_list *lst);
-void	do_indexing(t_list *stack_a);
+int	do_indexing(t_list *stack_a);
 void	pa(t_list *a, t_list *b);
 void	pb(t_list *a, t_list *b);
 void	ra(t_list *a);
@@ -60,5 +60,11 @@ int		is_sorted(t_list *a);
 void	radix_sort(t_list *a, t_list *b);
 int		num_checker(char *str);
 t_list	*str_to_list(char **args, int argc, t_list *a);
+char	**ft_split(char *s, char c);
+void	free_split(char **split);
+int		single_arg_to_list(t_list *a, char *str);
+int		error();
+void    sort_three(t_list *a);
+void    sort_five(t_list *a, t_list *b);
 
 #endif
